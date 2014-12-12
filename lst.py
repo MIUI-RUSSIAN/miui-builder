@@ -41,6 +41,7 @@ projects = [
 	('cancro-v6-kk-alpha ', HOME+'remote/cancro-v6-kk-alpha', 'cancro'),
 	('mocha-v6-kk-alpha  ', HOME+'remote/mocha-v6-kk-alpha', 'mocha'),
 	('mocha-v6-kk-dev    ', HOME+'remote/mocha-v6-kk-dev', 'mocha'),
+	('mocha-v6-kk-stable ', HOME+'remote/mocha-v6-kk-stable', 'mocha'),
 	('pisces-v6-kk-dev   ', HOME+'remote/pisces-v6-kk-dev', 'pisces'),
 	('pisces-v6-kk-stable', HOME+'remote/pisces-v6-kk-stable', 'pisces'),
 	('gucci-v6-kk-dev    ', HOME+'remote/gucci-v6-kk-dev', 'gucci'),
