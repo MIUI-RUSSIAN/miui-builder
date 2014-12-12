@@ -11,7 +11,7 @@ parser.add_argument('-o', '--order', help='p: order by project name, s: order by
 args = parser.parse_args()
 order = args.order
 
-home = os.path.expanduser("~")
+# home = os.path.expanduser("~")
 def stamp_to_time(t):
 	# return datetime.datetime.fromtimestamp(t).strftime('%m-%d %H:%M:%S')
 	return datetime.datetime.fromtimestamp(t).strftime('%m-%d %H:%M')
@@ -62,7 +62,7 @@ for project in projects:
 	manifest_time = image_time = 0
 	for status in status_list:
 		ps = {}
-		path = os.path.join(home, project_path, status['path'](product_name))
+		path = os.path.join(project_path, status['path'](product_name))
 		if status['description'] == title_list[0]:
 			if os.path.exists(path):
 				manifest_time = os.stat(path).st_mtime
@@ -97,14 +97,20 @@ for i in result:
 	print i['pn'], i['dirty']+'\t', i['pp']+'\t', i['pm']+'\t',
 	print
 # other dirs
-DIR = '/home/eggfly/raid/'
-for path in os.listdir(DIR):
-	if os.path.isdir(os.path.join(DIR, path)):
-		exist = False
-		for p in projects:
-			if p[1] in path or path in p[1]:
-				exist = True
-				break
-		if not exist:
-			print path
-# EOF
+RAID_DIR = '/home/eggfly/raid/'
+REMOTE_DIR = '/home/eggfly/remote/'
+def list_others(d):
+	if os.path.isdir(d):
+		for path in os.listdir(d):
+			full_path = os.path.join(d, path)
+			if os.path.isdir(full_path):
+				exist = False
+				for p in projects:
+					if full_path == p[1]:
+						exist = True
+						break
+				if not exist:
+					print path
+list_others(RAID_DIR)
+list_others(REMOTE_DIR)
+# EOFi
