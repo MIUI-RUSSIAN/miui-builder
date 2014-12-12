@@ -3,10 +3,11 @@
     <head><title>MIUI Builder</title></head>
     <body>
         <h1>MIUI Builder</h1>
-        <p>Two {{roads}} diverged in a {{wood}}, and I—<br>
-I took the one less travelled by,<br>
-And that has {{made}} all the {{difference}}.</p>
+        <p>project list</p>
         <table>
         <tr><th></th></tr>
+        {% for project in projects %}
+        <tr><td>project.repo</td></tr>
+        {% end %}
     </body>
 </html>
