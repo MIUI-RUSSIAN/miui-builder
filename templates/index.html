@@ -3,11 +3,15 @@
     <head><title>MIUI Builder</title></head>
     <body>
         <h1>MIUI Builder</h1>
-        <p>project list</p>
+        <p>project list<br> {{s}}</p>
         <table>
         <tr><th></th></tr>
         {% for project in projects %}
-        <tr><td>project.repo</td></tr>
+        <tr>
+          <td>{{project['repo']}}</td>
+          <td>{{project['path']}}</td>
+          <td>{{project['memo']}}</td>
+        </tr>
         {% end %}
     </body>
 </html>
