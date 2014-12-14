@@ -3,9 +3,8 @@
 import datetime
 import argparse
 import os
-from termcolor import colored as c
 from lst import projects
-from state import title_list, get_projects
+from state import title_list, title_map, get_projects
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-o', '--order', help='p: order by project name, s: order by sync time, m: order by make time, t: order by touch')
@@ -13,17 +12,14 @@ args = parser.parse_args()
 order = args.order
 
 # home = os.path.expanduser("~")
-def stamp_to_time(t):
-	# return datetime.datetime.fromtimestamp(t).strftime('%m-%d %H:%M:%S')
-	return datetime.datetime.fromtimestamp(t).strftime('%m-%d %H:%M')
 print "---- projects ----"
-for title in title_list:
-	print title,
+for key in title_list:
+	print title_map[key],
 print
 result = get_projects()
 cmp_func = None
 if order == 'p':
-	cmp_func = lambda a,b: cmp(a['pn'], b['pn'])
+	cmp_func = lambda a,b: cmp(a['repo'], b['repo'])
 elif order == 's':
 	cmp_func = lambda a,b: cmp(a['ps'][0]['i'], b['ps'][0]['i'])
 elif order == 'm':
@@ -36,7 +32,7 @@ for i in result:
 	for ps in i['ps']:
 		# print ps['d'], ps['i'],
 		print ps['i'],
-	print i['pn'], i['dirty']+'\t', i['pp']+'\t', i['pm']+'\t',
+	print i['repo'], i['dirty']+'\t', i['path']+'\t', i['memo']+'\t',
 	print
 # other dirs
 RAID_DIR = '/home/eggfly/raid/'

@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head><title>MIUI Builder</title></head>
+    <head>
+      <title>MIUI Builder</title>
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+      <link href="static/style.css" rel="stylesheet" type="text/css" />
+    </head>
     <body>
         <h1>MIUI Builder</h1>
-        <p>project list<br> {{s}}</p>
-        <table>
-        <tr><th></th></tr>
+        <table class='filetable filelist'>
+        <tr>
+          <th>repo</th>
+          <th>path</th>
+          <th>exist?</th>
+          <th>last_sync_time</th>
+          <th>last_build_time</th>
+          <th>dirty?</th>
+          <th>memo</th>
+          <th>actions</th>
+        </tr>
         {% for project in projects %}
         <tr>
           <td>{{project['repo']}}</td>
           <td>{{project['path']}}</td>
+          <td>{{project['exist']}}</td>
+          <td>{{project['sync']}}</td>
+          <td>{{project['system']}}</td>
+          <td>{{project['dirty_html']}}</td>
           <td>{{project['memo']}}</td>
+          <td><a href="{project['memo']}}">actions</a></td>
         </tr>
         {% end %}
+        </table>
+        <p>{{s}}</p>
     </body>
 </html>

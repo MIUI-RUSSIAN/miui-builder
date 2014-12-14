@@ -13,17 +13,10 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
         result = get_projects()
-        s = str(result)
+        s = str(result[0])
 	projects = []
 	for item in result:
-		project = {}
-		project['repo'] = item['pn']
-		project['path'] = item['pp']
-		project['memo'] = item['pm']
-		for status in item['ps']:
-			project[status['d']] = status['i']
-		projects.append(project)
-        # projects = [{'repo': 'cancro-v6-kk-alpha', 'backend': 'ubuntu.host8.tk'}]
+		projects.append(item)
         self.render("index.html", projects=projects, s=s)
 
 if __name__ == "__main__":
