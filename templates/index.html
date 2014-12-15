@@ -17,9 +17,9 @@
           <th>last_build_time</th>
           <th>dirty?</th>
           <th>memo</th>
-          <th>sync</th>
+          <th>sync, status</th>
           <th>clean</th>
-          <th>build</th>
+          <th>build, status</th>
           <th>clean build</th>
         </tr>
         {% for project in projects %}
@@ -32,9 +32,9 @@
           <td>{{project['system']}}</td>
           <td>{{project['dirty_html']}}</td>
           <td>{{project['memo']}}</td>
-          <td><a href="sync?path={{project['path']}}"><img src='static/icons/blueberry/refresh.png'></a>status: {{project['last_sync_status']}}</td>
+          <td><a href="sync?path={{project['path']}}"><img src='static/icons/blueberry/refresh.png'></a> {% set lss = project['last_sync_status'] %}<img src='static/icons/{% if lss == 'running' %}LoaderIcon.gif{% elif lss == 'ok' %}blueberry/check.png{% elif lss == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
           <td><a href="{{project['path']}}"><img src='static/icons/blueberry/sound_music-on.png'></a></td>
-          <td><a href="build?path={{project['path']}}"><img src='static/icons/blueberry/play.png'></a> status: {{project['last_build_status']}}</td>
+          <td><a href="build?path={{project['path']}}"><img src='static/icons/blueberry/play.png'></a> {% set lbs = project['last_build_status'] %}<img src='static/icons/{% if lbs == 'running' %}LoaderIcon.gif{% elif lbs == 'ok' %}blueberry/check.png{% elif lbs == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
           <td><a href="{{project['path']}}"><img src='static/icons/blueberry/forward.png'></a></td>
           </td>
         </tr>

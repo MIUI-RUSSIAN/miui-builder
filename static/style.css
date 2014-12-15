@@ -60,6 +60,9 @@ min-height: 200px;
 font-size: 12px;
 font-family: "Courier New", Courier, monospace;
 }
+td{
+text-align: center;
+}
 td img{
 width: 20px;
 height: 20px;
