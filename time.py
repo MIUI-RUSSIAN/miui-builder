@@ -48,7 +48,7 @@ def list_others(d):
 						exist = True
 						break
 				if not exist:
-					print path
+					print full_path
 list_others(RAID_DIR)
 list_others(REMOTE_DIR)
 # EOFi
