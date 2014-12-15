@@ -54,6 +54,8 @@ def append_action_history(action):
     with open(HISTORY_FILE, 'a+b') as f:
         f.write(str(action) + '\n')
 def get_action_history():
+    if not os.path.exists(HISTORY_FILE):
+        return ()
     with open(HISTORY_FILE, 'r') as f:
         logs = f.readlines()
         logs.reverse()
