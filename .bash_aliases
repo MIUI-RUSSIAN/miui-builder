@@ -239,11 +239,12 @@ case "$PWD" in
     jdk6
     product=dior
     ;;
+  *gucci*)
+    jdk6
+    product=gucci
+    ;;
   *ferrari*)
     product=ferrari
-    ;;
-  *gucci*)
-    product=gucci
     ;;
 esac
 launch $product
