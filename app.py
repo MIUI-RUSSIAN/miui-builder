@@ -50,6 +50,11 @@ class BuildHandler(ScriptHandlerBase):
         return '/home/eggfly/miui-builder/screen.build.sh %s %s' %(path, last)
     def get_action(self):
         return 'build'
+class CleanHandler(ScriptHandlerBase):
+    def get_cmd(self, path, last):
+        return '/home/eggfly/miui-builder/screen.clean.sh %s %s' %(path, last)
+    def get_action(self):
+        return 'clean'
 def append_action_history(action):
     with open(HISTORY_FILE, 'a+b') as f:
         f.write(str(action) + '\n')
@@ -66,6 +71,7 @@ if __name__ == "__main__":
             (r"/", MainHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
+            (r"/clean.*", CleanHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
