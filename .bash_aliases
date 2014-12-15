@@ -36,11 +36,12 @@ make systemimage -j1
 }
 
 function make.system.userdata.jN() {
-make systemimage userdataimage
+# TODO
+make systemimage userdataimage -j8
 }
 
 function make.system.userdata() {
-make.system.userdata.jN -j9
+make systemimage userdataimage -j8
 }
 
 # lunch -> launch
