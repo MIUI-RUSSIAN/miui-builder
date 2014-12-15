@@ -17,10 +17,10 @@
           <th>last_build_time</th>
           <th>dirty?</th>
           <th>memo</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>sync</th>
+          <th>clean</th>
+          <th>build</th>
+          <th>clean build</th>
         </tr>
         {% for project in projects %}
         <tr>
@@ -32,10 +32,10 @@
           <td>{{project['system']}}</td>
           <td>{{project['dirty_html']}}</td>
           <td>{{project['memo']}}</td>
-          <td><a href="sync?path={{project['path']}}"><img src='static/icons/1-128.png'>sync</a> status: {{project['last_sync_status']}}</td>
-          <td><a href="{{project['path']}}">clean</a></td>
-          <td><a href="build?path={{project['path']}}">build</a> status: {{project['last_build_status']}}</td>
-          <td><a href="{{project['path']}}">clean build</a></td>
+          <td><a href="sync?path={{project['path']}}"><img src='static/icons/blueberry/refresh.png'></a>status: {{project['last_sync_status']}}</td>
+          <td><a href="{{project['path']}}"><img src='static/icons/blueberry/sound_music-on.png'></a></td>
+          <td><a href="build?path={{project['path']}}"><img src='static/icons/blueberry/play.png'></a> status: {{project['last_build_status']}}</td>
+          <td><a href="{{project['path']}}"><img src='static/icons/blueberry/forward.png'></a></td>
           </td>
         </tr>
         {% end %}
