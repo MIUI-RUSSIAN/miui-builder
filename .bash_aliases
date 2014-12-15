@@ -8,22 +8,43 @@ PATH=$PATH:$GOBIN:$GOROOT/bin
 PATH=$PATH:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/platform-tools/:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/tools/
 
 # jdk6
-alias jdk6='. ~/env.sh && echo -e "\e[92m** JDK version was set to jdk6 \e[0m"'
+function jdk6() {
+. ~/env.sh && echo -e "\e[92m** JDK version was set to jdk6 \e[0m"
+}
 
-alias PPath="~/product_path.py"
-alias tim='~/time.py'
+function PPath() {
+~/product_path.py
+}
+
+function tim() {
+~/time.py
+}
 
 # smartlunch
-alias smartlunch="cd \`PPath\` && mylunch && cd -"
+# alias smartlunch="cd \`PPath\` && mylunch && cd -"
+function smartlunch() {
+cd `PPath` && mylunch && cd -
+}
 
 # alias
-alias make.system.9='make systemimage -j9'
-alias make.system.1='make systemimage -j1'
-alias make.system.userdata.jN='make systemimage userdataimage'
-alias make.system.userdata='make.system.userdata.jN -j9'
+function make.system.9() {
+make systemimage -j9
+}
+
+function make.system.1() {
+make systemimage -j1
+}
+
+function make.system.userdata.jN() {
+make systemimage userdataimage
+}
+
+function make.system.userdata() {
+make.system.userdata.jN -j9
+}
 
 # lunch -> launch
-function launch {
+function launch() {
 . build/envsetup.sh
 lunch $1-userdebug
 }
@@ -37,13 +58,6 @@ alias lunchdior='. build/envsetup.sh && lunch dior-userdebug'
 alias lunchthomas_td='. build/envsetup.sh && lunch wt86047-userdebug'
 alias lunchthomas_w='. build/envsetup.sh && lunch wt88047-userdebug'
 alias lunchferrari='. build/envsetup.sh && lunch ferrari-userdebug'
-
-#alias make.cancro='lunchcancro && make.system.userdata'
-#alias make.aries='luncharies && make.system.userdata'
-#alias make.mocha='lunchmocha && make.system.userdata'
-#alias make.pisces='lunchpisces && make.system.userdata'
-#alias make.virgo='lunchvirgo && make.system.userdata'
-#alias make.ferrari='lunchferrari && make.system.userdata'
 
 # repo
 alias r.upload.='repo upload .'
