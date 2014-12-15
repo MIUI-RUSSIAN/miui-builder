@@ -1,0 +1,4 @@
+screen -S "cancro-v6-kk-dev" -d -m ~/miui-builder/sync.sh
+
+subprocess.call('cd ~/raid/cancro-v6-kk-dev && screen -S "cancro-v6-kk-dev" -d -m ~/miui-builder/sync.sh', shell=True)
+

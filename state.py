@@ -13,8 +13,8 @@ def stamp_to_time(t):
 	time_str = t.strftime('%m-%d %H:%M')
 	delta = now - t
 	if delta.days != 0: delta_str = "%2d days" % delta.days
-	elif delta.seconds / 3600 != 0: delta_str = "%2d hrs " % delta.seconds / 3600
-	elif delta.seconds / 60 != 0: delta_str = "%2d mins" % delta.seconds / 60
+	elif delta.seconds / 3600 != 0: delta_str = "%2d hrs " % (delta.seconds / 3600)
+	elif delta.seconds / 60 != 0: delta_str = "%2d mins" % (delta.seconds / 60)
 	elif delta.seconds != 0: delta_str = "%2d secs" % delta.seconds
 	else : delta_str = "NEAR"
 	return "%s (%s)" %(time_str, delta_str)
@@ -89,6 +89,28 @@ def get_projects():
 		i['dirty_html'] = html_colored('dirty', 'red') if manifest_time > image_time else html_colored('ok', 'green')
 		i['path'] = project_path
 		i['memo'] = memo
+		i['last_sync_status'] = get_last_status(os.path.join(project_path, 'sync.log'))
 		result.append(i)
 	return result
+def get_last_status(path):
+    status = ''
+    if os.path.exists(path):
+        with open(path) as f:
+            last_line = ''
+            while True:
+                line = f.readline()
+                if not line:
+                    status = last_line.strip()
+                    break
+                last_line = line
+    code = None
+    try:
+        code = int(status)
+    except:
+        pass
+    if code == None:
+        if status != '': return 'running'
+        else: return 'n/a'
+    elif code == 0: return 'ok'
+    else: return 'error(%d)'%code
 # EOF
