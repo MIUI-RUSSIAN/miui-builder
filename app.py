@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from abc import ABCMeta, abstractmethod
 import os.path
 import subprocess
 
@@ -19,23 +20,38 @@ class MainHandler(tornado.web.RequestHandler):
 	for item in result:
 		projects.append(item)
         self.render("index.html", projects=projects, s=s)
-
-class SyncHandler(tornado.web.RequestHandler):
+class ScriptHandlerBase(tornado.web.RequestHandler):
+    __metaclass__ = ABCMeta
     def get(self):
         path = self.get_argument('path')
         last = os.path.split(path)[-1]
-        # cmd = 'cd "%s" && screen -S "%s:sync" -d -m ~/miui-builder/sync.sh' %(path, last)
-        cmd = '/home/eggfly/miui-builder/screen.sync.sh %s %s' %(path, last)
+        cmd = self.get_cmd(path, last)
         code = subprocess.call(cmd, shell=True)
         if code == 0:
             self.redirect('/')
             return
-        self.write("action: sync, path: %s, code: %d" %(path, code))
+        action = self.get_action()
+        self.write("action: %s, path: %s, code: %d" %(action, path, code))
+    @abstractmethod
+    def get_cmd(self, path, last): pass
+    @abstractmethod
+    def get_action(self): pass
+class SyncHandler(ScriptHandlerBase):
+    def get_cmd(self, path, last):
+        return '/home/eggfly/miui-builder/screen.sync.sh %s %s' %(path, last)
+    def get_action(self):
+        return 'sync'
+class BuildHandler(ScriptHandlerBase):
+    def get_cmd(self, path, last):
+        return '/home/eggfly/miui-builder/screen.build.sh %s %s' %(path, last)
+    def get_action(self):
+        return 'build'
 if __name__ == "__main__":
     app = tornado.web.Application(
         handlers = [
             (r"/", MainHandler),
             (r"/sync.*", SyncHandler),
+            (r"/build.*", BuildHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),

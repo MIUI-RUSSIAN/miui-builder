@@ -90,6 +90,7 @@ def get_projects():
 		i['path'] = project_path
 		i['memo'] = memo
 		i['last_sync_status'] = get_last_status(os.path.join(project_path, 'sync.log'))
+		i['last_build_status'] = get_last_status(os.path.join(project_path, 'build.log'))
 		result.append(i)
 	return result
 def get_last_status(path):
