@@ -37,24 +37,32 @@ title_list = [
 def html_colored(text, color):
 	# TODO
 	return text
+def get_sync_info(path, project_path, product_name):
+    manifest_path = project_path+'/manifest'
+    sync_log_path = project_path+'/sync.log'
+    if os.path.exists(sync_log_path):
+        return stamp_to_time(os.stat(sync_log_path).st_mtime)
+    elif os.path.exists(manifest_path):
+        return stamp_to_time(os.stat(manifest_path).st_mtime)
+    return '     miss/stable     '
 status_list = (
 	{	'path': lambda product: 'manifest',
 		'key': 'sync',
 		'description': title_map['sync'],
-		'info': lambda path: colored(stamp_to_time(os.stat(path).st_mtime), 'green') if os.path.exists(path) else colored("     miss/stable     ", 'green'),
-		'html': lambda path: html_colored(stamp_to_time(os.stat(path).st_mtime), 'green') if os.path.exists(path) else html_colored("miss/stable", 'green')
+		'info': lambda path, project_path, product_name: colored(get_sync_info(path, project_path, product_name), 'green'),
+		'html': lambda path, project_path, product_name: html_colored(get_sync_info(path, project_path, product_name), 'green'),
 	},
 	{	'path': lambda product: 'out/target/product/'+product+"/system.img",
 		'key': 'system',
 		'description': title_map['system'],
-		'info': lambda path: colored(stamp_to_time(os.stat(path).st_mtime), 'cyan') if os.path.exists(path) else colored("       missing       ", 'red'),
-		'html': lambda path: html_colored(stamp_to_time(os.stat(path).st_mtime), 'cyan') if os.path.exists(path) else html_colored("  missing  ", 'red')
+		'info': lambda path, project_path, product_name: colored(stamp_to_time(os.stat(path).st_mtime), 'cyan') if os.path.exists(path) else colored("       missing       ", 'red'),
+		'html': lambda path, project_path, product_name: html_colored(stamp_to_time(os.stat(path).st_mtime), 'cyan') if os.path.exists(path) else html_colored("  missing  ", 'red')
 	},
 	{	'path': lambda product: '',
 		'key': 'exist',
 		'description': title_map['exist'],
-		'info': lambda path: colored('exist', 'green') if os.path.exists(path) else colored("missing", 'red'),
-		'html': lambda path: html_colored('exist', 'green') if os.path.exists(path) else html_colored("missing", 'red')
+		'info': lambda path, project_path, product_name: colored('exist', 'green') if os.path.exists(path) else colored("missing", 'red'),
+		'html': lambda path, project_path, product_name: html_colored('exist', 'green') if os.path.exists(path) else html_colored("missing", 'red')
 	},
 )
 def get_projects():
@@ -77,8 +85,8 @@ def get_projects():
 			elif key == 'system':
 				if os.path.exists(path):
 					image_time = os.stat(path).st_mtime
-			info = status['info'](path)
-			html = status['html'](path)
+			info = status['info'](path, project_path, product_name)
+			html = status['html'](path, project_path, product_name)
 			ps['d'] = status['description']
 			ps['i'] = info
 			i['ps'].append(ps)

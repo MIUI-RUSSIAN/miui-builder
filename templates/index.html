@@ -12,15 +12,17 @@
           <th>status</th>
           <th>repo</th>
           <th>path</th>
-          <th>exist?</th>
-          <th>last_sync_time</th>
-          <th>last_build_time</th>
+          <th>exist</th>
           <th>dirty?</th>
-          <th>memo</th>
-          <th>sync, status</th>
+          <th>last_try_sync_time</th>
+          <th>sync<br>ok?</th>
+          <th>sync</th>
+          <th>last_build_time</th>
+          <th>build<br>ok?</th>
+          <th>build</th>
           <th>clean</th>
-          <th>build, status</th>
-          <th>clean build</th>
+          <th>clean<br>build</th>
+          <th>memo</th>
         </tr>
         {% for project in projects %}
         <tr>
@@ -28,18 +30,22 @@
           <td>{{project['repo']}}</td>
           <td>{{project['path']}}</td>
           <td>{{project['exist']}}</td>
-          <td>{{project['sync']}}</td>
-          <td>{{project['system']}}</td>
           <td>{{project['dirty_html']}}</td>
-          <td>{{project['memo']}}</td>
-          <td><a href="sync?path={{project['path']}}"><img src='static/icons/blueberry/refresh.png'></a> {% set lss = project['last_sync_status'] %}<img src='static/icons/{% if lss == 'running' %}LoaderIcon.gif{% elif lss == 'ok' %}blueberry/check.png{% elif lss == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
+          <td>{{project['sync']}}</td>
+          <td>{% set lss = project['last_sync_status'] %}<img src='static/icons/{% if lss == 'running' %}LoaderIcon.gif{% elif lss == 'ok' %}blueberry/check.png{% elif lss == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
+          <td><a href="sync?path={{project['path']}}"><img src='static/icons/blueberry/refresh.png'></a></td>
+          <td>{{project['system']}}</td>
+          <td>{% set lbs = project['last_build_status'] %}<img src='static/icons/{% if lbs == 'running' %}LoaderIcon.gif{% elif lbs == 'ok' %}blueberry/check.png{% elif lbs == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
+          <td><a href="build?path={{project['path']}}"><img src='static/icons/blueberry/play.png'></a></td>
           <td><a href="{{project['path']}}"><img src='static/icons/blueberry/sound_music-on.png'></a></td>
-          <td><a href="build?path={{project['path']}}"><img src='static/icons/blueberry/play.png'></a> {% set lbs = project['last_build_status'] %}<img src='static/icons/{% if lbs == 'running' %}LoaderIcon.gif{% elif lbs == 'ok' %}blueberry/check.png{% elif lbs == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></td>
           <td><a href="{{project['path']}}"><img src='static/icons/blueberry/forward.png'></a></td>
-          </td>
+          <td>{{project['memo']}}</td>
         </tr>
         {% end %}
         </table>
         <p>Powered by Tornado Framework and Python</p>
+        <p>TODO: 1. error log link, 2. running state by running screen, 3. pending waiting queue, 4. action log</p>
+        <h1>Action history:</h1>
+        <ol>{% for log in actions %}<li>{{log}}</li>{% end %}</ol>
     </body>
 </html>

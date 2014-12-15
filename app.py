@@ -11,6 +11,7 @@ import tornado.web
 
 from state import get_projects
 
+HISTORY_FILE = 'history.log'
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
@@ -19,7 +20,8 @@ class MainHandler(tornado.web.RequestHandler):
 	projects = []
 	for item in result:
 		projects.append(item)
-        self.render("index.html", projects=projects, s=s)
+        actions = get_action_history()
+        self.render("index.html", projects=projects, s=s, actions=actions)
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -27,11 +29,13 @@ class ScriptHandlerBase(tornado.web.RequestHandler):
         last = os.path.split(path)[-1]
         cmd = self.get_cmd(path, last)
         code = subprocess.call(cmd, shell=True)
+        action = self.get_action()
+        log = "action: %s, path: %s, code: %d" %(action, path, code)
+        append_action_history(log)
         if code == 0:
             self.redirect('/')
             return
-        action = self.get_action()
-        self.write("action: %s, path: %s, code: %d" %(action, path, code))
+        self.write(log)
     @abstractmethod
     def get_cmd(self, path, last): pass
     @abstractmethod
@@ -46,6 +50,14 @@ class BuildHandler(ScriptHandlerBase):
         return '/home/eggfly/miui-builder/screen.build.sh %s %s' %(path, last)
     def get_action(self):
         return 'build'
+def append_action_history(action):
+    with open(HISTORY_FILE, 'a+b') as f:
+        f.write(str(action) + '\n')
+def get_action_history():
+    with open(HISTORY_FILE, 'r') as f:
+        logs = f.readlines()
+        logs.reverse()
+        return logs
 if __name__ == "__main__":
     app = tornado.web.Application(
         handlers = [
