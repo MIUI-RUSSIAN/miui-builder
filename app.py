@@ -3,6 +3,7 @@
 
 from abc import ABCMeta, abstractmethod
 import os.path
+import datetime
 import subprocess
 import time
 import tornado.httpserver
@@ -84,9 +85,17 @@ class BuildLogHandler(LogHandlerBase):
 class CleanLogHandler(LogHandlerBase):
     def get_log_path(self):
         return 'clean.log'
+class RepoBranchLogHandler(LogHandlerBase):
+    def get_log_path(self):
+        return 'repo.branch.log'
+class RepoDiffLogHandler(LogHandlerBase):
+    def get_log_path(self):
+        return 'repo.diff.log'
 def append_action_history(action):
+    now = datetime.datetime.now()
+    time_str = now.strftime('%Y-%m-%d %H:%M:%S')
     with open(HISTORY_FILE, 'a+b') as f:
-        f.write(str(action) + '\n')
+        f.write("%s: %s\n" %(time_str, str(action)))
 def get_action_history():
     if not os.path.exists(HISTORY_FILE):
         return ()
@@ -101,6 +110,8 @@ if __name__ == "__main__":
             (r"/log/sync*", SyncLogHandler),
             (r"/log/build*", BuildLogHandler),
             (r"/log/clean*", CleanLogHandler),
+            (r"/log/repo_branch*", RepoBranchLogHandler),
+            (r"/log/repo_diff*", RepoDiffLogHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
             (r"/cleanbuild.*", CleanBuildHandler),
