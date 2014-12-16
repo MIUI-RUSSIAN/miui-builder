@@ -14,13 +14,14 @@
           <th>path</th>
           <th>exist</th>
           <th>dirty?</th>
-          <th>last_try_sync_time</th>
+          <th>last try sync time</th>
           <th>sync<br>ok?</th>
           <th>sync</th>
-          <th>last_build_time</th>
+          <th>last system.img<br>build time</th>
           <th>build<br>ok?</th>
           <th>build</th>
           <th>clean</th>
+          <th>last successful<br>clean build</th>
           <th>clean<br>build</th>
           <th>memo</th>
         </tr>
@@ -38,6 +39,7 @@
           <td>{% set lbs = project['last_build_status'] %}<a href="log/build?path={{project['path']}}&n={{nonce}}"><img src='static/icons/{% if lbs == 'running' %}LoaderIcon.gif{% elif lbs == 'ok' %}blueberry/check.png{% elif lbs == 'n/a' %}blueberry/help.png{% else %}blueberry/attention.png{% end %}'></a></td>
           <td><a href="build?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/play.png'></a></td>
           <td><a href="clean?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/sound_music-on.png'></a></td>
+          <td>{{project['last_cleanbuildsuccess_time']}}</td>
           <td><a href="cleanbuild?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/forward.png'></a></td>
           <td>{{project['memo']}}</td>
         </tr>

@@ -99,8 +99,13 @@ def get_projects():
 		i['memo'] = memo
 		i['last_sync_status'] = get_last_status(os.path.join(project_path, 'sync.log'))
 		i['last_build_status'] = get_last_status(os.path.join(project_path, 'build.log'))
+		i['last_cleanbuildsuccess_time'] = try_get_file_time(os.path.join(project_path, 'cleanbuildsuccess.mark'))
 		result.append(i)
 	return result
+def try_get_file_time(path):
+    if os.path.exists(path):
+        return stamp_to_time(os.stat(path).st_mtime)
+    return 'n/a'
 def get_last_status(path):
     status = ''
     if os.path.exists(path):
