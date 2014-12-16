@@ -60,6 +60,22 @@ class CleanBuildHandler(ScriptHandlerBase):
         return '/home/eggfly/miui-builder/screen.cleanbuild.sh %s %s' %(path, last)
     def get_action(self):
         return 'cleanbuild'
+class LogHandlerBase(tornado.web.RequestHandler):
+    __metaclass__ = ABCMeta
+    def get(self):
+        path = self.get_argument('path')
+        log_path = os.path.join(path, self.get_log_path())
+        self.set_header("Content-Type", "text/plain")
+        if os.path.exists(log_path):
+            with open(log_path, 'rb') as f:
+                self.write(f.read())
+        else:
+            self.write(log_path + ' is not found')
+    @abstractmethod
+    def get_log_path(self): pass
+class SyncLogHandler(LogHandlerBase):
+    def get_log_path(self):
+        return 'sync.log'
 def append_action_history(action):
     with open(HISTORY_FILE, 'a+b') as f:
         f.write(str(action) + '\n')
@@ -74,6 +90,7 @@ if __name__ == "__main__":
     app = tornado.web.Application(
         handlers = [
             (r"/", MainHandler),
+            (r"/log/sync*", SyncLogHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
             (r"/clean.*", CleanHandler),
