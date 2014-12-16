@@ -76,6 +76,12 @@ class LogHandlerBase(tornado.web.RequestHandler):
 class SyncLogHandler(LogHandlerBase):
     def get_log_path(self):
         return 'sync.log'
+class BuildLogHandler(LogHandlerBase):
+    def get_log_path(self):
+        return 'build.log'
+class CleanLogHandler(LogHandlerBase):
+    def get_log_path(self):
+        return 'clean.log'
 def append_action_history(action):
     with open(HISTORY_FILE, 'a+b') as f:
         f.write(str(action) + '\n')
@@ -91,6 +97,8 @@ if __name__ == "__main__":
         handlers = [
             (r"/", MainHandler),
             (r"/log/sync*", SyncLogHandler),
+            (r"/log/build*", BuildLogHandler),
+            (r"/log/clean*", CleanLogHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
             (r"/clean.*", CleanHandler),
