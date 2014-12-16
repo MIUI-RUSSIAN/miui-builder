@@ -4,7 +4,7 @@
 from abc import ABCMeta, abstractmethod
 import os.path
 import subprocess
-
+import time
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -21,7 +21,8 @@ class MainHandler(tornado.web.RequestHandler):
 	for item in result:
 		projects.append(item)
         actions = get_action_history()
-        self.render("index.html", projects=projects, s=s, actions=actions)
+        nonce = int(time.time())
+        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce)
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -68,7 +69,8 @@ class LogHandlerBase(tornado.web.RequestHandler):
         self.set_header("Content-Type", "text/plain")
         if os.path.exists(log_path):
             with open(log_path, 'rb') as f:
-                self.write(f.read())
+                content = f.read()
+                self.write(content)
         else:
             self.write(log_path + ' is not found')
     @abstractmethod
@@ -101,8 +103,8 @@ if __name__ == "__main__":
             (r"/log/clean*", CleanLogHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
-            (r"/clean.*", CleanHandler),
             (r"/cleanbuild.*", CleanBuildHandler),
+            (r"/clean.*", CleanHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
