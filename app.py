@@ -66,7 +66,7 @@ class LogHandlerBase(tornado.web.RequestHandler):
     def get(self):
         path = self.get_argument('path')
         log_path = os.path.join(path, self.get_log_path())
-        self.set_header("Content-Type", "text/plain")
+        self.set_header("Content-Type", "text/plain; charset=UTF-8")
         if os.path.exists(log_path):
             with open(log_path, 'rb') as f:
                 content = f.read()
