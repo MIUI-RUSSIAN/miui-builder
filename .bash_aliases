@@ -244,6 +244,16 @@ case "$PWD" in
     jdk6
     product=gucci
     ;;
+  *wt86047*)
+    # thomas_td 4g
+    jdk6
+    product=wt86047
+    ;;
+  *wt88047*)
+    # thomas_w 4g
+    jdk6
+    product=wt88047
+    ;;
   *ferrari*)
     product=ferrari
     ;;
