@@ -29,7 +29,7 @@
         </tr>
         {% for project in projects %}
         <tr>
-          <td>Idle</td>
+          <td>{{project['status']}}</td>
           <td>{{project['repo']}}</td>
           <td>{{project['path']}}</td>
           <td>{{project['exist']}}</td>

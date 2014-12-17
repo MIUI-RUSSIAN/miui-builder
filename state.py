@@ -3,6 +3,7 @@
 import datetime
 import argparse
 import os
+import subprocess
 from termcolor import colored
 from lst import projects
 
@@ -102,6 +103,7 @@ def get_projects():
 		i['last_cleanbuildsuccess_time'] = try_get_file_time(os.path.join(project_path, 'cleanbuildsuccess.mark'))
 		i['repo_branch_existance'] = file_existance(os.path.join(project_path, 'repo.branch.log'))
 		i['repo_diff_existance'] = file_existance(os.path.join(project_path, 'repo.diff.log'))
+                i['status'] = get_project_screen_status(project_path)
 		result.append(i)
 	return result
 def file_existance(path):
@@ -134,4 +136,17 @@ def get_last_status(path):
         else: return 'n/a'
     elif code == 0: return 'ok'
     else: return 'error(%d)'%code
+def popen_get_status_code(command):
+    p = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    return p.wait()
+def get_project_screen_status(path):
+    last = os.path.split(path)[-1]
+    syncing = popen_get_status_code('screen -ls | grep "%s:sync" -c' %last) == 0
+    building = popen_get_status_code('screen -ls | grep "%s:build" -c' %last) == 0
+    cleanbuilding = popen_get_status_code('screen -ls | grep "%s:cleanbuild" -c' %last) == 0
+    l = []
+    if syncing: l.append("syncing")
+    if building: l.append("building")
+    if cleanbuilding: l.append("cleanbuilding")
+    return '<br>'.join(l)
 # EOF
