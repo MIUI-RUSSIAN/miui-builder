@@ -29,7 +29,7 @@
         </tr>
         {% for project in projects %}
         <tr>
-          <td>{{project['status']}}</td>
+          <td>{% set status=project['status']%}<img src='static/icons/{% if status=='building' or status=='cleanbuilding' %}flip_flop.gif{% elif status=='syncing'%}sync.gif{% elif status=='' %}blueberry/radio-button_off.png{% else %}LoaderIcon.gif{% end %}'></td>
           <td>{{project['repo']}}</td>
           <td>{{project['path']}}</td>
           <td>{{project['exist']}}</td>
