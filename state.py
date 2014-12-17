@@ -108,9 +108,10 @@ def get_projects():
 	return result
 def file_existance(path):
     if os.path.exists(path):
-        return 'ok'
-    else:
-        return 'n/a'
+        with open(path, 'rb') as f:
+            lines = f.readlines()
+            return len(lines)
+    return 'n/a'
 def try_get_file_time(path):
     if os.path.exists(path):
         return stamp_to_time(os.stat(path).st_mtime)
