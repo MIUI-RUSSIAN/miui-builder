@@ -20,6 +20,10 @@ function tim() {
 ~/time.py
 }
 
+function abandon() {
+for b in `repo branch | awk '{print $2}'`; do repo abandon $b; done
+}
+
 # smartlunch
 # alias smartlunch="cd \`PPath\` && mylunch && cd -"
 function smartlunch() {
