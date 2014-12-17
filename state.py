@@ -100,8 +100,15 @@ def get_projects():
 		i['last_sync_status'] = get_last_status(os.path.join(project_path, 'sync.log'))
 		i['last_build_status'] = get_last_status(os.path.join(project_path, 'build.log'))
 		i['last_cleanbuildsuccess_time'] = try_get_file_time(os.path.join(project_path, 'cleanbuildsuccess.mark'))
+		i['repo_branch_existance'] = file_existance(os.path.join(project_path, 'repo.branch.log'))
+		i['repo_diff_existance'] = file_existance(os.path.join(project_path, 'repo.diff.log'))
 		result.append(i)
 	return result
+def file_existance(path):
+    if os.path.exists(path):
+        return 'ok'
+    else:
+        return 'n/a'
 def try_get_file_time(path):
     if os.path.exists(path):
         return stamp_to_time(os.stat(path).st_mtime)

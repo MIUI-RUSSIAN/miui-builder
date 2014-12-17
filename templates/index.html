@@ -43,8 +43,8 @@
           <td><a href="clean?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/sound_music-on.png'></a></td>
           <td>{{project['last_cleanbuildsuccess_time']}}</td>
           <td><a href="cleanbuild?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/forward.png'></a></td>
-          <td><a href="log/repo_branch?path={{project['path']}}&n={{nonce}}">branch</td>
-          <td><a href="log/repo_diff?path={{project['path']}}&n={{nonce}}">diff</td>
+          <td>{% if project['repo_branch_existance'] == 'ok' %}<a href="log/repo_branch?path={{project['path']}}&n={{nonce}}">branch</a>{% else %}n/a{% end %}</td>
+          <td>{% if project['repo_diff_existance'] == 'ok' %}<a href="log/repo_diff?path={{project['path']}}&n={{nonce}}">diff</a>{% else %}n/a{% end %}</td>
           <td>{{project['memo']}}</td>
         </tr>
         {% end %}
