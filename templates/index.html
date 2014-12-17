@@ -44,7 +44,7 @@
           <td>{{project['last_cleanbuildsuccess_time']}}</td>
           <td><a href="cleanbuild?path={{project['path']}}&n={{nonce}}"><img src='static/icons/blueberry/forward.png'></a></td>
           <td>{% set rbe = project['repo_branch_existance'] %}{% if rbe == 'n/a' %}n/a{% else %}<a href="log/repo_branch?path={{project['path']}}&n={{nonce}}">{{rbe}}</a>{% end %}</td>
-          <td>{% if project['repo_diff_existance'] == 'ok' %}<a href="log/repo_diff?path={{project['path']}}&n={{nonce}}">diff</a>{% else %}n/a{% end %}</td>
+          <td>{% set rde = project['repo_diff_existance'] %}{% if rde == 'n/a' %}n/a{% else %}<a href="log/repo_diff?path={{project['path']}}&n={{nonce}}">{{rde}}</a>{% end %}</td>
           <td>{{project['memo']}}</td>
         </tr>
         {% end %}
