@@ -261,6 +261,9 @@ case "$PWD" in
   *ferrari*)
     product=ferrari
     ;;
+  *leo*)
+    product=leo
+    ;;
 esac
 launch $product
 if [ "$product" ];then
