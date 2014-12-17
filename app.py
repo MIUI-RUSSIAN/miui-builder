@@ -14,6 +14,7 @@ from state import get_projects
 
 HISTORY_FILE = 'history.log'
 JOBS_FILE = 'jobs.lst'
+ACTION_LIST = ('sync', 'clean', 'build', 'cleanbuild')
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
@@ -99,6 +100,20 @@ class RepoBranchLogHandler(LogHandlerBase):
 class RepoDiffLogHandler(LogHandlerBase):
     def get_log_path(self):
         return 'repo.diff.log'
+class AddJobHandler(tornado.web.RequestHandler):
+    def get(self):
+        path = self.get_argument('path')
+        last = ""
+        if path : last = os.path.split(path)[-1]
+        action = self.get_argument('action')
+        if action in ACTION_LIST:
+            enqueue_job(path, action)
+            self.redirect('/')
+        else:
+            self.write('action %s not found in ACTION_LIST'%action)
+def enqueue_job(path, action):
+    with open(JOBS_FILE, 'a+b') as f:
+        f.write("%s:%s\n" %(path, action))
 def append_action_history(action):
     now = datetime.datetime.now()
     time_str = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -125,6 +140,7 @@ if __name__ == "__main__":
             (r"/cleanbuild.*", CleanBuildHandler),
             (r"/clean.*", CleanHandler),
             (r"/start_jobs.*", StartJobsHandler),
+            (r"/add_job.*", AddJobHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
