@@ -67,7 +67,7 @@ class StartJobsHandler(ScriptHandlerBase):
     def get_cmd(self, path, last):
         return '/home/eggfly/miui-builder/screen.jobs.sh'
     def get_action(self):
-        return 'start_jobs'
+        return 'trigger_start_jobs'
 class LogHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
