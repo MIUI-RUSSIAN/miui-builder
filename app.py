@@ -13,6 +13,7 @@ import tornado.web
 from state import get_projects
 
 HISTORY_FILE = 'history.log'
+JOBS_FILE = 'jobs.lst'
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
@@ -21,9 +22,10 @@ class MainHandler(tornado.web.RequestHandler):
 	projects = []
 	for item in result:
 		projects.append(item)
-        actions = get_action_history()
+        actions = get_file_lines(HISTORY_FILE, True)
+        jobs = get_file_lines(JOBS_FILE, False)
         nonce = int(time.time())
-        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce)
+        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce, jobs=jobs)
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -102,12 +104,12 @@ def append_action_history(action):
     time_str = now.strftime('%Y-%m-%d %H:%M:%S')
     with open(HISTORY_FILE, 'a+b') as f:
         f.write("%s: %s\n" %(time_str, str(action)))
-def get_action_history():
-    if not os.path.exists(HISTORY_FILE):
+def get_file_lines(filename, reverse):
+    if not os.path.exists(filename):
         return ()
-    with open(HISTORY_FILE, 'r') as f:
+    with open(filename, 'r') as f:
         logs = f.readlines()
-        logs.reverse()
+        if reverse: logs.reverse()
         return logs
 if __name__ == "__main__":
     app = tornado.web.Application(
