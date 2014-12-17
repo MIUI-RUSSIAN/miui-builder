@@ -27,8 +27,9 @@ class MainHandler(tornado.web.RequestHandler):
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
-        path = self.get_argument('path')
-        last = os.path.split(path)[-1]
+        path = self.get_argument('path', None)
+        last = ""
+        if path : last = os.path.split(path)[-1]
         cmd = self.get_cmd(path, last)
         code = subprocess.call(cmd, shell=True)
         action = self.get_action()
@@ -62,6 +63,11 @@ class CleanBuildHandler(ScriptHandlerBase):
         return '/home/eggfly/miui-builder/screen.cleanbuild.sh %s %s' %(path, last)
     def get_action(self):
         return 'cleanbuild'
+class StartJobsHandler(ScriptHandlerBase):
+    def get_cmd(self, path, last):
+        return '/home/eggfly/miui-builder/screen.jobs.sh'
+    def get_action(self):
+        return 'start_jobs'
 class LogHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -116,6 +122,7 @@ if __name__ == "__main__":
             (r"/build.*", BuildHandler),
             (r"/cleanbuild.*", CleanBuildHandler),
             (r"/clean.*", CleanHandler),
+            (r"/start_jobs.*", StartJobsHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
