@@ -15,6 +15,15 @@ from state import get_projects
 HISTORY_FILE = 'history.log'
 JOBS_FILE = 'jobs.lst'
 ACTION_LIST = ('sync', 'clean', 'build', 'cleanbuild')
+def check_output(command):
+    s = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    s.wait()
+    return s.stdout.read()
+def get_extra_info():
+    # screen info
+    screen_info = check_output('screen -ls')
+    disk_info = check_output('df -h /home/eggfly/raid /home/eggfly/remote /home/eggfly/share')
+    return (screen_info + disk_info).splitlines()
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         # self.write("Hello, world")
@@ -26,7 +35,8 @@ class MainHandler(tornado.web.RequestHandler):
         actions = get_file_lines(HISTORY_FILE, True)
         jobs = get_file_lines(JOBS_FILE, False)
         nonce = int(time.time())
-        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce, jobs=jobs)
+        extra = get_extra_info()
+        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce, jobs=jobs, extra=extra)
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):

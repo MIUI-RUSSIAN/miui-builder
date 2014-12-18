@@ -60,6 +60,8 @@
         {% end %}
         </table>
         <h1><a href='start_jobs'>START BACKGROUND JOBS</a></h1>
+        <h1>Extra info:</h1>
+        <p>{% for e in extra %}{{e}}<br>{% end %}</p>
         <h1>Job list:</h1>
         <ol>{% for job in jobs %}<li>{{job}}</li>{% end %}</ol>
         <h1>Action history:</h1>
