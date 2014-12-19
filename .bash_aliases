@@ -258,6 +258,11 @@ case "$PWD" in
     jdk6
     product=wt88047
     ;;
+  *lte26007*)
+    # H2X(联芯)
+    jdk6
+    product=full_lte26007
+    ;;
   *ferrari*)
     product=ferrari
     ;;
