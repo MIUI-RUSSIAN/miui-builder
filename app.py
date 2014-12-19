@@ -121,9 +121,26 @@ class AddJobHandler(tornado.web.RequestHandler):
             self.redirect('/')
         else:
             self.write('action %s not found in ACTION_LIST'%action)
+class CancelJobHandler(tornado.web.RequestHandler):
+    def get(self):
+        item = self.get_argument('item')
+        result = cancel_job(item)
+        if result:
+            self.redirect('/')
+        else:
+            self.write('job %s not found in pending_list'%item)
+def cancel_job(item):
+    lines = get_file_lines(JOBS_FILE, False)
+    if item in lines:
+        lines.remove(item)
+        with open(JOBS_FILE, 'wb') as f:
+            f.write('\n'.join(lines))
+        return True
+    else:
+        return False
 def enqueue_job(path, action):
     with open(JOBS_FILE, 'a+b') as f:
-        f.write("%s:%s\n" %(path, action))
+        f.write("\n%s:%s" %(path, action))
 def append_action_history(action):
     now = datetime.datetime.now()
     time_str = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -134,6 +151,7 @@ def get_file_lines(filename, reverse):
         return ()
     with open(filename, 'r') as f:
         logs = f.readlines()
+        logs = map(lambda x: x.strip(), logs)
         if reverse: logs.reverse()
         return logs
 if __name__ == "__main__":
@@ -151,6 +169,7 @@ if __name__ == "__main__":
             (r"/clean.*", CleanHandler),
             (r"/start_jobs.*", StartJobsHandler),
             (r"/add_job.*", AddJobHandler),
+            (r"/cancel_job.*", CancelJobHandler),
         ],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),

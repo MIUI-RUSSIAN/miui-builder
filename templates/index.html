@@ -63,7 +63,7 @@
         <h1>Extra info:</h1>
         <p>{% for e in extra %}{{e}}<br>{% end %}</p>
         <h1>Job list:</h1>
-        <ol>{% for job in jobs %}<li>{{job}}</li>{% end %}</ol>
+        <ol>{% for job in jobs %}<li><a href='cancel_job?item={{job}}'>del</a> {{job}}</li>{% end %}</ol>
         <h1>Action history:</h1>
         <ol>{% for log in actions %}<li>{{log}}</li>{% end %}</ol>
     </body>
