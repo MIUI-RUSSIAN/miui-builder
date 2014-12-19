@@ -11,6 +11,7 @@ import tornado.ioloop
 import tornado.web
 
 from state import get_projects
+from lst import projects
 
 HISTORY_FILE = 'history.log'
 JOBS_FILE = 'jobs.lst'
@@ -29,14 +30,14 @@ class MainHandler(tornado.web.RequestHandler):
         # self.write("Hello, world")
         result = get_projects()
         s = str(result[0])
-	projects = []
+	extra_projects = []
 	for item in result:
-		projects.append(item)
+		extra_projects.append(item)
         actions = get_file_lines(HISTORY_FILE, True)
         jobs = get_file_lines(JOBS_FILE, False)
         nonce = int(time.time())
         extra = get_extra_info()
-        self.render("index.html", projects=projects, s=s, actions=actions, nonce=nonce, jobs=jobs, extra=extra)
+        self.render("index.html", projects=extra_projects, s=s, actions=actions, nonce=nonce, jobs=jobs, extra=extra)
 class ScriptHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -81,6 +82,29 @@ class StartJobsHandler(ScriptHandlerBase):
         return '/home/eggfly/miui-builder/screen.jobs.sh'
     def get_action(self):
         return 'trigger_start_jobs'
+class BatchHandlerBase(tornado.web.RequestHandler):
+    __metaclass__ = ABCMeta
+    def get(self):
+        action = self.get_action()
+        for p in projects:
+            if len(p) >= 2:
+                full_path = p[1]
+                enqueue_job(full_path, action)
+        self.redirect('/')
+    @abstractmethod
+    def get_action(self): pass
+class BatchSyncHandler(BatchHandlerBase):
+    def get_action(self):
+        return 'sync'
+class BatchBuildHandler(BatchHandlerBase):
+    def get_action(self):
+        return 'build'
+class BatchCleanBuildHandler(BatchHandlerBase):
+    def get_action(self):
+        return 'cleanbuild'
+class BatchCleanHandler(BatchHandlerBase):
+    def get_action(self):
+        return 'clean'
 class LogHandlerBase(tornado.web.RequestHandler):
     __metaclass__ = ABCMeta
     def get(self):
@@ -163,6 +187,10 @@ if __name__ == "__main__":
             (r"/log/clean*", CleanLogHandler),
             (r"/log/repo_branch*", RepoBranchLogHandler),
             (r"/log/repo_diff*", RepoDiffLogHandler),
+            (r"/batch/sync.*", BatchSyncHandler),
+            (r"/batch/build.*", BatchBuildHandler),
+            (r"/batch/cleanbuild.*", BatchCleanBuildHandler),
+            (r"/batch/clean.*", BatchCleanHandler),
             (r"/sync.*", SyncHandler),
             (r"/build.*", BuildHandler),
             (r"/cleanbuild.*", CleanBuildHandler),
