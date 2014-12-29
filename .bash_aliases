@@ -23,6 +23,9 @@ function tim() {
 function abandon() {
 for b in `repo branch | awk '{print $2}'`; do repo abandon $b; done
 }
+function abandoncurrent() {
+for b in `git branch | awk '{print $2}'`; do echo $b&&repo abandon $b .; done
+}
 
 # smartlunch
 # alias smartlunch="cd \`PPath\` && mylunch && cd -"
@@ -288,5 +291,7 @@ alias home='adb shell input keyevent 3'
 alias tap='adb shell input tap \$1 \$2'
 alias back='adb shell input keyevent 4'
 
-
+function activesync () {
+adb shell am broadcast -a android.intent.action.SYNC_STATE_CHANGED -ez active true -ez failing false
+}
 
