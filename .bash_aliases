@@ -174,26 +174,30 @@ alias pullSMSDB='adb pull /data/data/com.android.providers.telephony/databases/m
 alias pullContacts2DB="adb pull /data/data/com.android.providers.contacts/databases/contacts2.db"
 
 # CloudService
-alias pushCloudServiceApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudService.apk /system/app/"
-alias pushCloudServiceApkMochaInner="adb push \`PPath\`/out/target/product/mocha/system/app/CloudService.apk /system/app/"
-alias pushCloudServiceApkPiscesInner="adb push \`PPath\`/out/target/product/pisces/system/app/CloudService.apk /system/app/"
-alias pushCloudServiceApkVirgoInner="adb push \`PPath\`/out/target/product/virgo/system/app/CloudService.apk /system/app/"
+alias pushCloudServiceApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudService.apk /system/app"
+alias pushCloudServiceApkMochaInner="adb push \`PPath\`/out/target/product/mocha/system/app/CloudService.apk /system/app"
+alias pushCloudServiceApkPiscesInner="adb push \`PPath\`/out/target/product/pisces/system/app/CloudService.apk /system/app"
+alias pushCloudServiceApkVirgoInner="adb push \`PPath\`/out/target/product/virgo/system/app/CloudService.apk /system/app"
+alias pushCloudServiceApkFerrariInner="adb push \`PPath\`/out/target/product/ferrari/system/app/CloudService/CloudService.apk /system/app/CloudService"
 
 alias pushCloudServiceApkCancro="pushCloudServiceApkCancroInner || (adb.root.remount && pushCloudServiceApkCancroInner)"
 alias pushCloudServiceApkMocha="pushCloudServiceApkMochaInner || (adb.root.remount && pushCloudServiceApkMochaInner)"
 alias pushCloudServiceApkPisces="pushCloudServiceApkPiscesInner || (adb.root.remount && pushCloudServiceApkPiscesInner)"
 alias pushCloudServiceApkVirgo="pushCloudServiceApkVirgoInner || (adb.root.remount && pushCloudServiceApkVirgoInner)"
+alias pushCloudServiceApkFerrari="pushCloudServiceApkFerrariInner || (adb.root.remount && pushCloudServiceApkFerrariInner)"
 
 # CloudCommon
 alias pushCloudCommonJarCancroInner="adb push \`PPath\`/out/target/product/cancro/system/framework/cloud-common.jar /system/framework/"
 alias pushCloudCommonJarMochaInner="adb push \`PPath\`/out/target/product/mocha/system/framework/cloud-common.jar /system/framework/"
 alias pushCloudCommonJarPiscesInner="adb push \`PPath\`/out/target/product/pisces/system/framework/cloud-common.jar /system/framework/"
 alias pushCloudCommonJarVirgoInner="adb push \`PPath\`/out/target/product/virgo/system/framework/cloud-common.jar /system/framework/"
+alias pushCloudCommonJarFerrariInner="adb push \`PPath\`/out/target/product/ferrari/system/framework/cloud-common.jar /system/framework/"
 
 alias pushCloudCommonJarCancro="pushCloudCommonJarCancroInner || (adb.root.remount && pushCloudCommonJarCancroInner)"
 alias pushCloudCommonJarMocha="pushCloudCommonJarMochaInner || (adb.root.remount && pushCloudCommonJarMochaInner)"
 alias pushCloudCommonJarPisces="pushCloudCommonJarPiscesInner || (adb.root.remount && pushCloudCommonJarPiscesInner)"
 alias pushCloudCommonJarVirgo="pushCloudCommonJarVirgoInner || (adb.root.remount && pushCloudCommonJarVirgoInner)"
+alias pushCloudCommonJarFerrari="pushCloudCommonJarFerrariInner || (adb.root.remount && pushCloudCommonJarFerrariInner)"
 
 # XiaomiAccount
 alias pushXiaomiAccountApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/XiaomiAccount.apk /system/app/"
