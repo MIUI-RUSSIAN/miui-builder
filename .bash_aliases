@@ -229,6 +229,10 @@ alias cdxmaccountsdk="cd \`PPath\`/packages/apps/XiaomiAccountSdk"
 # try start lunch
 function mylunch {
 case "$PWD" in 
+  *mione*)
+    jdk6
+    product=mione_plus
+    ;;
   *cancro*)
     jdk6
     product=cancro
