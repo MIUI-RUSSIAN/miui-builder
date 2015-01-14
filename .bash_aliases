@@ -12,6 +12,10 @@ function jdk6() {
 . ~/env.sh && echo -e "\e[92m** JDK version was set to jdk6 \e[0m"
 }
 
+function jdk7() {
+echo -e "\e[92m** JDK version was set to jdk7 \e[0m"
+}
+
 function PPath() {
 ~/product_path.py
 }
@@ -28,7 +32,6 @@ for b in `git branch | awk '{print $2}'`; do echo $b&&repo abandon $b .; done
 }
 
 # smartlunch
-# alias smartlunch="cd \`PPath\` && mylunch && cd -"
 function smartlunch() {
 cd `PPath` && mylunch && cd -
 }
@@ -228,52 +231,57 @@ alias cdxmaccountsdk="cd \`PPath\`/packages/apps/XiaomiAccountSdk"
 
 # try start lunch
 function mylunch {
+# jdk6 or jdk7
+case "$PWD" in 
+  *-jb*)
+    jdk6
+    ;;
+  *-kk*)
+    jdk6
+    ;;
+  *-l*)
+    jdk7
+    ;;
+  *)
+    jdk6
+    ;;
+esac
+
 case "$PWD" in 
   *mione*)
-    jdk6
     product=mione_plus
     ;;
   *cancro*)
-    jdk6
     product=cancro
     ;;
   *aries*)
-    jdk6
     product=aries
     ;;
   *mocha*)
-    jdk6
     product=mocha
     ;;
   *pisces*)
-    jdk6
     product=pisces
     ;;
   *virgo*)
-    jdk6
     product=virgo
     ;;
   *dior*)
-    jdk6
     product=dior
     ;;
   *gucci*)
-    jdk6
     product=gucci
     ;;
   *wt86047*)
     # thomas_td 4g
-    jdk6
     product=wt86047
     ;;
   *wt88047*)
     # thomas_w 4g
-    jdk6
     product=wt88047
     ;;
   *lte26007*)
     # H2X(联芯)
-    jdk6
     product=full_lte26007
     ;;
   *ferrari*)
