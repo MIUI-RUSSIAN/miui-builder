@@ -118,6 +118,10 @@ alias flashvirgo='~/flash.sh . virgo'
 alias flashvirgo2='~/flash2.sh . virgo'
 alias flashvirgoerase='~/flash.sh . virgo erase'
 
+alias flashleo='~/flash.sh . leo'
+alias flashleo2='~/flash2.sh . leo'
+alias flashleoerase='~/flash.sh . leo erase'
+
 alias flashthomas_w='~/flash.sh . wt88047'
 alias flashthomas_w2='~/flash2.sh . wt88047'
 alias flashthomas_w_erase='~/flash.sh . wt88047 erase'
@@ -206,10 +210,12 @@ alias pushCloudCommonJarFerrari="pushCloudCommonJarFerrariInner || (adb.root.rem
 alias pushXiaomiAccountApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/XiaomiAccount.apk /system/app/"
 alias pushXiaomiAccountApkMochaInner="adb push \`PPath\`/out/target/product/mocha/system/app/XiaomiAccount.apk /system/app/"
 alias pushXiaomiAccountApkPiscesInner="adb push \`PPath\`/out/target/product/pisces/system/app/XiaomiAccount.apk /system/app/"
+alias pushXiaomiAccountApkFerrariInner="adb push \`PPath\`/out/target/product/ferrari/system/app/XiaomiAccount/XiaomiAccount.apk /system/app/XiaomiAccount"
 
 alias pushXiaomiAccountApkCancro="pushXiaomiAccountApkCancroInner || (adb.root.remount && pushXiaomiAccountApkCancroInner)"
 alias pushXiaomiAccountApkMocha="pushXiaomiAccountApkMochaInner || (adb.root.remount && pushXiaomiAccountApkMochaInner)"
 alias pushXiaomiAccountApkPisces="pushXiaomiAccountApkPiscesInner || (adb.root.remount && pushXiaomiAccountApkPiscesInner)"
+alias pushXiaomiAccountApkFerrari="pushXiaomiAccountApkFerrariInner || (adb.root.remount && pushXiaomiAccountApkFerrariInner)"
 
 # XiaomiServiceFramework
 alias pushXMSFApkAriesInner="adb push \`PPath\`/out/target/product/aries/system/app/XiaomiServiceFramework.apk /system/app/"

@@ -171,5 +171,6 @@
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/XiaomiAccountSdk/base/libs/analytics_tracker.jar"/>
 	<classpathentry kind="lib" path="packages/apps/XiaomiServiceFramework/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
+	<classpathentry kind="lib" path="packages/apps/CloudService/libs/protobuf-java-2.5.0.jar"/>
 	<classpathentry kind="output" path="out/target/common/obj/JAVA_LIBRARIES/android_stubs_current_intermediates/classes"/>
 </classpath>
