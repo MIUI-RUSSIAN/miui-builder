@@ -180,6 +180,7 @@ alias pushAccountDB="adb push accounts.db /data/system/users/0/accounts.db"
 alias pullSMSDB='adb pull /data/data/com.android.providers.telephony/databases/mmssms.db'
 alias pullContacts2DB="adb pull /data/data/com.android.providers.contacts/databases/contacts2.db"
 
+alias pullSyncAccounts="adb pull /data/system/sync/accounts.xml"
 # CloudService
 alias pushCloudServiceApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudService.apk /system/app"
 alias pushCloudServiceApkMochaInner="adb push \`PPath\`/out/target/product/mocha/system/app/CloudService.apk /system/app"
