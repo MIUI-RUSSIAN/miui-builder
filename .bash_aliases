@@ -181,6 +181,17 @@ alias pullSMSDB='adb pull /data/data/com.android.providers.telephony/databases/m
 alias pullContacts2DB="adb pull /data/data/com.android.providers.contacts/databases/contacts2.db"
 
 alias pullSyncAccounts="adb pull /data/system/sync/accounts.xml"
+
+alias cloudAppRestore="adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudQueryRestoreAppActivity"
+alias cloudAppSpace="adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudBackupManageSpaceActivity"
+
+# CloudAppBackup
+alias pushCloudAppBackupApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/CloudAppBackup.apk /system/priv-app"
+alias pushCloudBackupApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/CloudBackup.apk /system/priv-app"
+# CloudBackup
+alias pushCloudAppBackupApkCancro="pushCloudAppBackupApkCancroInner || (adb.root.remount && pushCloudAppBackupApkCancroInner)"
+alias pushCloudBackupApkCancro="pushCloudBackupApkCancroInner || (adb.root.remount && pushCloudBackupApkCancroInner)"
+
 # CloudService
 alias pushCloudServiceApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudService.apk /system/app"
 alias pushCloudServiceApkMochaInner="adb push \`PPath\`/out/target/product/mocha/system/app/CloudService.apk /system/app"

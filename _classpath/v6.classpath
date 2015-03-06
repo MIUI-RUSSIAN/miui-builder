@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="packages/apps/Bluetooth/src"/>
+	<classpathentry kind="src" path="packages/apps/CloudAppBackup/src"/>
+	<classpathentry kind="src" path="packages/apps/CloudBackup/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiMusic/common/music_sdk/cloud/src_platform"/>
+	<classpathentry kind="src" path="packages/apps/MiuiMusic/common/music_sdk/cloud/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiBrowser2/cloud/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/commonV6/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/phoneV6/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/phone/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/padV6/src"/>
 	<classpathentry kind="src" path="mediatek/frameworks/common/src"/>
 	<classpathentry kind="src" path="miui/frameworks/telephony/base/java"/>
 	<classpathentry kind="src" path="packages/apps/MiuiSystemUI/packages/SystemUI/src"/>
@@ -23,7 +32,6 @@
 	<classpathentry kind="src" path="packages/apps/BugReport/src"/>
 	<classpathentry kind="src" path="external/junit/src"/>
 	<classpathentry kind="src" path="packages/apps/CloudService/tests/src"/>
-	<classpathentry kind="src" path="packages/apps/CloudAppBackup/src"/>
 	<classpathentry kind="src" path="packages/apps/NetworkAssistant2/src"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiAccountSdk/passport/library/src"/>
 	<classpathentry kind="src" path="miui/frameworks/base/library/core/java"/>
@@ -171,6 +179,6 @@
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/XiaomiAccountSdk/base/libs/analytics_tracker.jar"/>
 	<classpathentry kind="lib" path="packages/apps/XiaomiServiceFramework/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
-	<classpathentry kind="lib" path="packages/apps/CloudService/libs/protobuf-java-2.5.0.jar"/>
+	<classpathentry kind="lib" path="packages/apps/Backup/protobuf-java-2.4.0a.jar"/>
 	<classpathentry kind="output" path="out/target/common/obj/JAVA_LIBRARIES/android_stubs_current_intermediates/classes"/>
 </classpath>
