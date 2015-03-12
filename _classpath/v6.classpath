@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="packages/apps/Bluetooth/src"/>
+	<classpathentry kind="src" path="packages/apps/MiCloudSDK/tests/src"/>
 	<classpathentry kind="src" path="packages/apps/CloudAppBackup/src"/>
 	<classpathentry kind="src" path="packages/apps/CloudBackup/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiMusic/common/music_sdk/cloud/src_platform"/>
