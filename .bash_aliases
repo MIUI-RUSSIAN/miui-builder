@@ -155,6 +155,7 @@ alias am='adb shell am start -n $1'
 
 # adb log by process
 alias cloudservice1="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==1{print \$2}'\`"
+alias cloudbackup="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudbackup | awk '{print \$2}'\`"
 alias cloudservice2="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==2{print \$2}'\`"
 alias cloudservice_sync="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice:sync | awk '{print \$2}'\`"
 alias xmsf="adb logcat -v time | grep \`adb shell ps | grep com.xiaomi.xmsf | awk '{print \$2}'\`"
@@ -185,12 +186,20 @@ alias pullSyncAccounts="adb pull /data/system/sync/accounts.xml"
 alias cloudAppRestore="adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudQueryRestoreAppActivity"
 alias cloudAppSpace="adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudBackupManageSpaceActivity"
 
-# CloudAppBackup
+alias pushAndRebootCancro="pushCloudCommonJarCancro && pushCloudServiceApkCancro && pushCloudBackupApkCancro && adb reboot"
+
+# some push
 alias pushCloudAppBackupApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/CloudAppBackup.apk /system/priv-app"
-alias pushCloudBackupApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/CloudBackup.apk /system/priv-app"
-# CloudBackup
 alias pushCloudAppBackupApkCancro="pushCloudAppBackupApkCancroInner || (adb.root.remount && pushCloudAppBackupApkCancroInner)"
+
+alias pushCloudBackupApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/CloudBackup.apk /system/priv-app"
 alias pushCloudBackupApkCancro="pushCloudBackupApkCancroInner || (adb.root.remount && pushCloudBackupApkCancroInner)"
+
+alias pushSettingsApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/priv-app/Settings.apk /system/priv-app"
+alias pushSettingsApkCancro="pushSettingsApkCancroInner || (adb.root.remount && pushSettingsApkCancroInner)"
+
+alias pushDeskClockApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/DeskClock.apk /system/app"
+alias pushDeskClockApkCancro="pushDeskClockApkCancroInner || (adb.root.remount && pushDeskClockApkCancroInner)"
 
 # CloudService
 alias pushCloudServiceApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudService.apk /system/app"
@@ -329,3 +338,9 @@ function activesync () {
 adb shell am broadcast -a android.intent.action.SYNC_STATE_CHANGED -ez active true -ez failing false
 }
 
+function cloudbackup_restore () {
+adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudQueryRestoreAppActivity
+}
+function syncdatasettings () {
+adb shell am start com.miui.cloudservice/.ui.SyncDataSettingsActivity
+}
