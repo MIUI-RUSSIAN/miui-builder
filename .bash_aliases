@@ -92,7 +92,7 @@ alias soft.reboot='adb shell "stop;start;"'
 # devices
 alias fastboot.reboot='sudo fastboot reboot'
 alias bootloader='adb reboot bootloader'
-alias recovery='adb reboot recovery'
+alias rec='adb reboot recovery'
 alias flashcancro='~/flash.sh . cancro'
 alias flashcancro1='~/flash1.sh . cancro'
 alias flashcancro2='~/flash2.sh . cancro'
@@ -255,6 +255,7 @@ alias cdcs="cd \`PPath\`/packages/apps/CloudService"
 alias cdxmaccount="cd \`PPath\`/packages/apps/XiaomiAccount"
 alias cdcc="cd \`PPath\`/miui/frameworks/opt/cloud"
 alias cdxmaccountsdk="cd \`PPath\`/packages/apps/XiaomiAccountSdk"
+alias cdp="cd \`PPath\`/packages/apps/\$1"
 
 # try start lunch
 function mylunch {
@@ -343,4 +344,14 @@ adb shell am start -n com.miui.cloudbackup/com.miui.cloudbackup.ui.CloudQueryRes
 }
 function syncdatasettings () {
 adb shell am start com.miui.cloudservice/.ui.SyncDataSettingsActivity
+}
+
+function awsubuntu () {
+ssh -i ~/aws.pem ubuntu@aws.eggfly.tk
+}
+function awseggfly () {
+ssh eggfly@aws.eggfly.tk
+}
+function dinning_mail () {
+python /home/eggfly/dinning/1/dinning_mailer.py
 }
