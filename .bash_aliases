@@ -346,6 +346,9 @@ function syncdatasettings () {
 adb shell am start com.miui.cloudservice/.ui.SyncDataSettingsActivity
 }
 
+function verboseMicloud () {
+adb shell setprop log.tag.Micloud VERBOSE
+}
 function awsubuntu () {
 ssh -i ~/aws.pem ubuntu@aws.eggfly.tk
 }
@@ -354,4 +357,7 @@ ssh eggfly@aws.eggfly.tk
 }
 function dinning_mail () {
 python /home/eggfly/dinning/1/dinning_mailer.py
+}
+function dumpSync () {
+adb shell dumpsys | grep -i "Active Syncs" -A 200
 }
