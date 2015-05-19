@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="packages/apps/Bluetooth/src"/>
+	<classpathentry kind="src" path="packages/apps/SNSLib/src"/>
+	<classpathentry kind="src" path="out/target/common/obj/APPS/CloudService_intermediates/src/src"/>
+	<classpathentry kind="src" path="packages/apps/MiCloudSDK/opensdk/file/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiSystemSdk/core/java"/>
 	<classpathentry kind="src" path="libcore/libdvm/src/main/java"/>
 	<classpathentry kind="src" path="packages/apps/ThemeManager/src"/>
@@ -89,7 +92,6 @@
 	<classpathentry kind="src" path="packages/apps/MiTag/src"/>
 	<classpathentry kind="src" path="packages/apps/PushUp/src"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiServiceFramework/src"/>
-	<classpathentry kind="src" path="packages/apps/PaymentService/src"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiAccount/src"/>
 	<classpathentry kind="src" path="packages/providers/CalendarProvider/src"/>
 	<classpathentry kind="src" path="packages/providers/ContactsProvider/src"/>
@@ -175,17 +177,16 @@
 	<classpathentry kind="src" path="external/tagsoup/src"/>
 	<classpathentry kind="lib" path="out/target/common/obj/JAVA_LIBRARIES/bouncycastle_intermediates/classes-jarjar.jar"/>
 	<classpathentry kind="lib" path="out/target/common/obj/JAVA_LIBRARIES/android-support-v4_intermediates/javalib.jar"/>
-	<classpathentry kind="lib" path="out/target/common/obj/JAVA_LIBRARIES/google-common_intermediates/javalib.jar"/>
-	<classpathentry kind="lib" path="out/target/common/obj/JAVA_LIBRARIES/gsf-client_intermediates/javalib.jar"/>
 	<classpathentry kind="lib" path="out/target/common/obj/JAVA_LIBRARIES/guava_intermediates/javalib.jar"/>
-	<classpathentry kind="lib" path="packages/apps/XiaomiAccountSdk/base/libs/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="miui/frameworks/opt/cloud/libs/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="packages/apps/CloudService/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/XiaomiAccountSdk/base/libs/analytics_tracker.jar"/>
-	<classpathentry kind="lib" path="packages/apps/XiaomiServiceFramework/libs/MiPush_SDK_Client_2_2_10_sdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/Backup/protobuf-java-2.4.0a.jar"/>
 	<classpathentry kind="lib" path="packages/apps/Mms/libs/microlog4android-1.0.0.jar"/>
-	<classpathentry kind="lib" path="packages/apps/MiuiStatsSDK/libs/MiStat_SDK_Client_1_2_0.jar"/>
 	<classpathentry kind="lib" path="miui/frameworks/opt/cloud/libs/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="packages/apps/CloudService/libs/weibosdkcore.jar"/>
+	<classpathentry kind="lib" path="packages/apps/CloudService/libs/miliaosdk.jar"/>
+	<classpathentry kind="lib" path="packages/apps/CloudService/libs/libammsdk.jar"/>
+	<classpathentry kind="lib" path="packages/apps/CloudService/libs/MiPush_SDK_Client_2_2_13_sdk.jar"/>
+	<classpathentry kind="lib" path="packages/apps/MiuiStatsSDK/libs/MiStats_SDK_Client_1_2_0.jar"/>
 	<classpathentry kind="output" path="out/target/common/obj/JAVA_LIBRARIES/android_stubs_current_intermediates/classes"/>
 </classpath>

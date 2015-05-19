@@ -221,11 +221,15 @@ alias pushCloudCommonJarPiscesInner="adb push \`PPath\`/out/target/product/pisce
 alias pushCloudCommonJarVirgoInner="adb push \`PPath\`/out/target/product/virgo/system/framework/cloud-common.jar /system/framework/"
 alias pushCloudCommonJarFerrariInner="adb push \`PPath\`/out/target/product/ferrari/system/framework/cloud-common.jar /system/framework/"
 
+alias pushCloudCommonApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/CloudCommon.apk /system/app"
+
 alias pushCloudCommonJarCancro="pushCloudCommonJarCancroInner || (adb.root.remount && pushCloudCommonJarCancroInner)"
 alias pushCloudCommonJarMocha="pushCloudCommonJarMochaInner || (adb.root.remount && pushCloudCommonJarMochaInner)"
 alias pushCloudCommonJarPisces="pushCloudCommonJarPiscesInner || (adb.root.remount && pushCloudCommonJarPiscesInner)"
 alias pushCloudCommonJarVirgo="pushCloudCommonJarVirgoInner || (adb.root.remount && pushCloudCommonJarVirgoInner)"
 alias pushCloudCommonJarFerrari="pushCloudCommonJarFerrariInner || (adb.root.remount && pushCloudCommonJarFerrariInner)"
+
+alias pushCloudCommonApkCancro="pushCloudCommonApkCancroInner || (adb.root.remount && pushCloudCommonApkCancroInner)"
 
 # XiaomiAccount
 alias pushXiaomiAccountApkCancroInner="adb push \`PPath\`/out/target/product/cancro/system/app/XiaomiAccount.apk /system/app/"
