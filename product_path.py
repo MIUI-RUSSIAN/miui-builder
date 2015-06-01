@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 
-PRODUCTS = ["aries", "cancro", "pisces", "virgo", "mocha", "ferrari", "gucci", "leo"]
+PRODUCTS = ["aries", "cancro", "pisces", "virgo", "mocha", "ferrari", "gucci", "leo", "libra"]
 path = os.path.normpath(os.getcwd())
 parts = path.split(os.sep)
 target = []

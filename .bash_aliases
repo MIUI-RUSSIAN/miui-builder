@@ -7,6 +7,9 @@ PATH=$PATH:$GOBIN:$GOROOT/bin
 
 PATH=$PATH:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/platform-tools/:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/tools/
 
+# stderred
+export LD_PRELOAD="/home/eggfly/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+
 # jdk6
 function jdk6() {
 . ~/env.sh && echo -e "\e[92m** JDK version was set to jdk6 \e[0m"
@@ -60,16 +63,6 @@ function launch() {
 lunch $1-userdebug
 }
 
-alias lunchcancro='. build/envsetup.sh && lunch cancro-userdebug'
-alias luncharies='. build/envsetup.sh && lunch aries-userdebug'
-alias lunchmocha='. build/envsetup.sh && lunch mocha-userdebug'
-alias lunchpisces='. build/envsetup.sh && lunch pisces-userdebug'
-alias lunchvirgo='. build/envsetup.sh && lunch virgo-userdebug'
-alias lunchdior='. build/envsetup.sh && lunch dior-userdebug'
-alias lunchthomas_td='. build/envsetup.sh && lunch wt86047-userdebug'
-alias lunchthomas_w='. build/envsetup.sh && lunch wt88047-userdebug'
-alias lunchferrari='. build/envsetup.sh && lunch ferrari-userdebug'
-
 # repo
 alias r.upload.='repo upload .'
 alias r.sync='repo sync -j8'
@@ -86,7 +79,8 @@ alias g.reset.1.hard='git reset HEAD~ --hard'
 alias pull="git pull --rebase"
 
 # adb
-alias debug='adb logcat -v time'
+alias debug='logcat-color -v time'
+alias debugc='adb logcat -c && logcat-color -v time'
 alias adb.root.remount='adb root && sleep 2 && adb remount'
 alias soft.reboot='adb shell "stop;start;"'
 # devices
@@ -154,21 +148,13 @@ alias make.system.userdata.send='make.system.userdata 2>&1 | tee bulk.txt ; ~/se
 alias am='adb shell am start -n $1'
 
 # adb log by process
-alias cloudservice1="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==1{print \$2}'\`"
-alias cloudbackup="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudbackup | awk '{print \$2}'\`"
-alias cloudservice2="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==2{print \$2}'\`"
-alias cloudservice_sync="adb logcat -v time | grep \`adb shell ps | grep com.miui.cloudservice:sync | awk '{print \$2}'\`"
-alias xmsf="adb logcat -v time | grep \`adb shell ps | grep com.xiaomi.xmsf | awk '{print \$2}'\`"
-alias xmaccount="adb logcat -v time | grep \`adb shell ps | grep com.xiaomi.account | awk '{print \$2}'\`"
-alias smsdebug="adb logcat -v time | grep \`adb shell ps | grep com.eggfly.sms | awk '{print \$2}'\`"
-# alias pdebug="adb logcat -v time | grep `adb shell ps | grep $1 | awk '{print \$2}'`"
-
-#function pdebug()
-#{
-#  test -e $1 || (adb logcat -v time | grep `adb shell ps | grep $1 | awk '{print $2}'`)
-#}
-
-
+alias cloudservice1="debug | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==1{print \$2}'\`"
+alias cloudbackup="debug | grep \`adb shell ps | grep com.miui.cloudbackup | awk '{print \$2}'\`"
+alias cloudservice2="debug | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==2{print \$2}'\`"
+alias cloudservice_sync="debug | grep \`adb shell ps | grep com.miui.cloudservice:sync | awk '{print \$2}'\`"
+alias xmsf="debug | grep \`adb shell ps | grep com.xiaomi.xmsf | awk '{print \$2}'\`"
+alias xmaccount="debug | grep \`adb shell ps | grep com.xiaomi.account | awk '{print \$2}'\`"
+alias smsdebug="debug | grep \`adb shell ps | grep com.eggfly.sms | awk '{print \$2}'\`"
 
 alias rmsdk="rm -r \`PPath\`/out/target/common/obj/JAVA_LIBRARIES/{com.xiaomi.micloudsdk_intermediates,com.xiaomi.accountsdk_intermediates,cloud-common_intermediates}"
 alias mmmsdkinner="mmm packages/apps/XiaomiAccountSdk/base/ packages/apps/MiCloudSDK/ miui/frameworks/opt/cloud/"
@@ -275,7 +261,7 @@ case "$PWD" in
     jdk7
     ;;
   *)
-    jdk6
+    jdk7
     ;;
 esac
 
@@ -322,6 +308,9 @@ case "$PWD" in
   *leo*)
     product=leo
     ;;
+  *virgo*)
+    product=virgo
+    ;;
 esac
 launch $product
 if [ "$product" ];then
@@ -365,3 +354,7 @@ python /home/eggfly/dinning/1/dinning_mailer.py
 function dumpSync () {
 adb shell dumpsys | grep -i "Active Syncs" -A 200
 }
+function cleanJava() {
+rm -r out/target/{product/$TARGET_PRODUCT,common}/obj/{JAVA_LIBRARIES,APPS}
+}
+color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1

@@ -182,11 +182,12 @@
 	<classpathentry kind="lib" path="packages/apps/XiaomiAccountSdk/base/libs/analytics_tracker.jar"/>
 	<classpathentry kind="lib" path="packages/apps/Backup/protobuf-java-2.4.0a.jar"/>
 	<classpathentry kind="lib" path="packages/apps/Mms/libs/microlog4android-1.0.0.jar"/>
-	<classpathentry kind="lib" path="miui/frameworks/opt/cloud/libs/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/weibosdkcore.jar"/>
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/miliaosdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/libammsdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/CloudService/libs/MiPush_SDK_Client_2_2_13_sdk.jar"/>
 	<classpathentry kind="lib" path="packages/apps/MiuiStatsSDK/libs/MiStats_SDK_Client_1_2_0.jar"/>
+	<classpathentry kind="lib" path="packages/apps/XiaomiServiceFramework/libs/log4j-over-slf4j-1.7.12.jar"/>
+	<classpathentry kind="lib" path="miui/frameworks/opt/cloud/libs/log4j-over-slf4j-1.7.12.jar"/>
 	<classpathentry kind="output" path="out/target/common/obj/JAVA_LIBRARIES/android_stubs_current_intermediates/classes"/>
 </classpath>
