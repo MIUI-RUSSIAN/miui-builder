@@ -23,7 +23,7 @@ def check_output(command):
 def get_extra_info():
     # screen info
     screen_info = check_output('screen -ls')
-    disk_info = check_output('df -h /home/eggfly/raid /home/eggfly/remote /home/eggfly/share /home/eggfly/raw2')
+    disk_info = check_output('df -h /home/eggfly/raid /home/eggfly/remote /home/eggfly/remote2 /home/eggfly/share /home/eggfly/raw2')
     return (screen_info + disk_info).splitlines()
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
