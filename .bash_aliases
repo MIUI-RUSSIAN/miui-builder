@@ -308,8 +308,8 @@ case "$PWD" in
   *leo*)
     product=leo
     ;;
-  *virgo*)
-    product=virgo
+  *libra*)
+    product=libra
     ;;
 esac
 launch $product
@@ -342,19 +342,62 @@ adb shell am start com.miui.cloudservice/.ui.SyncDataSettingsActivity
 function verboseMicloud () {
 adb shell setprop log.tag.Micloud VERBOSE
 }
+
 function awsubuntu () {
 ssh -i ~/aws.pem ubuntu@aws.eggfly.tk
 }
+
 function awseggfly () {
 ssh eggfly@aws.eggfly.tk
 }
+
 function dinning_mail () {
 python /home/eggfly/dinning/1/dinning_mailer.py
 }
+
 function dumpSync () {
 adb shell dumpsys | grep -i "Active Syncs" -A 200
 }
+
 function cleanJava() {
 rm -r out/target/{product/$TARGET_PRODUCT,common}/obj/{JAVA_LIBRARIES,APPS}
 }
+
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+
+function grepSettingsBackupPrepare () {
+adb shell setprop log.tag.SettingsBackup VERBOSE
+adb logcat -c
+}
+
+function grepSettingsBackup () {
+adb shell setprop log.tag.SettingsBackup VERBOSE
+adb logcat -v time | grep SettingsBackup
+}
+
+function settingsDump () {
+grepSettingsBackupPrepare
+adb shell am startservice -a com.miui.cloudbackup.DUMP_SETTINGS -e device $1
+grepSettingsBackup
+}
+
+function settingsDump_device_43e771f058d29ed46cda3b3053c94121 () {
+settingsDump 43e771f058d29ed46cda3b3053c94121
+}
+
+function settingsBackupByPackage () {
+grepSettingsBackupPrepare
+adb shell am startservice -a com.miui.cloudbackup.DEBUG_BACKUP -e packageName $1
+grepSettingsBackup
+}
+
+function settingsRestoreByDeviceAndPackage () {
+grepSettingsBackupPrepare
+adb shell am startservice -a com.miui.cloudbackup.DEBUG_RESTORE -e device $1 -e packageName $2
+grepSettingsBackup
+}
+function settingsRestoreByDeviceAndPackage_device_43e771f058d29ed46cda3b3053c94121 () {
+grepSettingsBackupPrepare
+adb shell am startservice -a com.miui.cloudbackup.DEBUG_RESTORE -e device 43e771f058d29ed46cda3b3053c94121 -e packageName $1
+grepSettingsBackup
+}

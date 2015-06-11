@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="external/okhttp/android/main/java"/>
+	<classpathentry kind="src" path="external/okhttp/src/main/java"/>
+	<classpathentry kind="src" path="packages/services/Telephony/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiSdk/library/src/java"/>
+	<classpathentry kind="src" path="packages/apps/MiuiSdk/library/static/src/java"/>
+	<classpathentry kind="src" path="packages/apps/MiuiSystemSdk/core/java"/>
 	<classpathentry kind="src" path="packages/apps/Bluetooth/src"/>
+	<classpathentry kind="src" path="miui/frameworks/opt/ToggleManager/src"/>
 	<classpathentry kind="src" path="packages/apps/SNSLib/src"/>
 	<classpathentry kind="src" path="out/target/common/obj/APPS/CloudService_intermediates/src/src"/>
 	<classpathentry kind="src" path="packages/apps/MiCloudSDK/opensdk/file/src"/>
-	<classpathentry kind="src" path="packages/apps/MiuiSystemSdk/core/java"/>
 	<classpathentry kind="src" path="libcore/libdvm/src/main/java"/>
 	<classpathentry kind="src" path="packages/apps/ThemeManager/src"/>
 	<classpathentry kind="src" path="packages/apps/ResourceBrowser/src"/>
@@ -46,16 +52,13 @@
 	<classpathentry kind="src" path="packages/apps/XiaomiAccountSdk/activate/src"/>
 	<classpathentry kind="src" path="packages/apps/SecurityCenter/src"/>
 	<classpathentry kind="src" path="miui/frameworks/base/telephony/java"/>
-	<classpathentry kind="src" path="packages/apps/MiuiSdk/library/static/src/java"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiAccountSdk/base/src"/>
 	<classpathentry kind="src" path="packages/apps/Notes/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiPhone/src"/>
-	<classpathentry kind="src" path="packages/apps/MiuiSdk/library/src/java"/>
 	<classpathentry kind="src" path="packages/apps/MiCloudSDK/src"/>
 	<classpathentry kind="src" path="packages/apps/KuaiPan/src"/>
 	<classpathentry kind="src" path="packages/apps/CloudService/src"/>
 	<classpathentry kind="src" path="packages/apps/SoundRecorder/src"/>
-	<classpathentry kind="src" path="packages/apps/Backup/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiGallery/common/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiGallery/common/gallerycommon/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiGallery/big/src"/>
