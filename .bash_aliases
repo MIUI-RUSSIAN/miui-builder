@@ -381,8 +381,12 @@ adb shell am startservice -a com.miui.cloudbackup.DUMP_SETTINGS -e device $1
 grepSettingsBackup
 }
 
-function settingsDump_device_43e771f058d29ed46cda3b3053c94121 () {
+function settingsDump_device_43e771f058d29ed46cda3b3053c94121_with_glass () {
 settingsDump 43e771f058d29ed46cda3b3053c94121
+}
+
+function settingsDump_device_6e528692dc16e98b191ab7b76a871c0b () {
+settingsDump 6e528692dc16e98b191ab7b76a871c0b
 }
 
 function settingsBackupByPackage () {

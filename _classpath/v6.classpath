@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="external/okhttp/android/main/java"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/common/gallerylib/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiSystemSdk/library/src/java"/>
 	<classpathentry kind="src" path="packages/apps/MiuiCamera/src"/>
 	<classpathentry kind="src" path="external/okhttp/src/main/java"/>
 	<classpathentry kind="src" path="packages/services/Telephony/src"/>
