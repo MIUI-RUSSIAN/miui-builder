@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="external/okhttp/android/main/java"/>
+	<classpathentry kind="src" path="frameworks/volley/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/gallerycommon/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/miui/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/gallerylib/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/phoneV6/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/padV6/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/openapisdk/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/MiuiSystemSdk/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/commonV6/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/MiuiSystemSdk/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/common/miui/src"/>
+	<classpathentry kind="src" path="packages/apps/XMPass/sdk/src"/>
+	<classpathentry kind="src" path="packages/apps/XMPass/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiVip/ServiceClient/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiVip/ipcsrc"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiVip/src"/>
+	<classpathentry kind="src" path="packages/apps/MiuiGallery/commonV6/external_src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiGallery/common/gallerylib/src"/>
 	<classpathentry kind="src" path="packages/apps/MiuiSystemSdk/library/src/java"/>
 	<classpathentry kind="src" path="packages/apps/MiuiCamera/src"/>

@@ -5,10 +5,10 @@ export GOBIN=$GOPATH/bin
 PATH=$PATH:$GOBIN:$GOROOT/bin
 # revert
 
-PATH=$PATH:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/platform-tools/:~/ssd/adt-bundle-linux-x86_64-20131030/sdk/tools/
+PATH=$PATH:~/ssd/adt-bundle-linux-x86_64/sdk/platform-tools/:~/ssd/adt-bundle-linux-x86_64/sdk/tools/
 
 # stderred
-export LD_PRELOAD="/home/eggfly/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
+# export LD_PRELOAD="/home/eggfly/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 
 # jdk6
 function jdk6() {
@@ -404,4 +404,13 @@ function settingsRestoreByDeviceAndPackage_device_43e771f058d29ed46cda3b3053c941
 grepSettingsBackupPrepare
 adb shell am startservice -a com.miui.cloudbackup.DEBUG_RESTORE -e device 43e771f058d29ed46cda3b3053c94121 -e packageName $1
 grepSettingsBackup
+}
+function copyToNginx() {
+cp ../../../out/target/product/$TARGET_PRODUCT/system/priv-app/XiaomiGallery.apk /usr/share/nginx/html/com.xiaomi.gallery/com.xiaomi.gallery-`date "+%Y%m%d"`Build$1.apk
+}
+function genOTA() {
+/usr/share/nginx/html/gen_ota.py $1
+}
+function genOTAChangelog() {
+vim /usr/share/nginx/html/com.xiaomi.gallery/com.xiaomi.gallery-`date "+%Y%m%d"`Build$1.txt
 }
