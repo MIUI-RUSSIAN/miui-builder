@@ -148,6 +148,7 @@ alias make.system.userdata.send='make.system.userdata 2>&1 | tee bulk.txt ; ~/se
 alias am='adb shell am start -n $1'
 
 # adb log by process
+alias gallery="debug | grep \`adb shell ps | grep com.xiaomi.gallery| awk '{print \$2}'\`"
 alias cloudservice1="debug | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==1{print \$2}'\`"
 alias cloudbackup="debug | grep \`adb shell ps | grep com.miui.cloudbackup | awk '{print \$2}'\`"
 alias cloudservice2="debug | grep \`adb shell ps | grep com.miui.cloudservice | awk 'NR==2{print \$2}'\`"
