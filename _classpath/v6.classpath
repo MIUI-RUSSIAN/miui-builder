@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="external/okhttp/android/main/java"/>
+	<classpathentry kind="src" path="packages/apps/Updater/src"/>
+	<classpathentry kind="src" path="packages/apps/XiaomiGallery/commonV6/external_src"/>
 	<classpathentry kind="src" path="frameworks/volley/src"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/gallerycommon/src"/>
 	<classpathentry kind="src" path="packages/apps/XiaomiGallery/common/miui/src"/>

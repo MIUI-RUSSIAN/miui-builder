@@ -411,6 +411,7 @@ cp ../../../out/target/product/$TARGET_PRODUCT/system/priv-app/XiaomiGallery.apk
 }
 function genOTA() {
 /usr/share/nginx/html/gen_ota.py $1
+ln -sf /usr/share/nginx/html/com.xiaomi.gallery/com.xiaomi.gallery-`date "+%Y%m%d"`Build$1.apk /usr/share/nginx/html/gallery-latest.apk
 }
 function genOTAChangelog() {
 vim /usr/share/nginx/html/com.xiaomi.gallery/com.xiaomi.gallery-`date "+%Y%m%d"`Build$1.txt
